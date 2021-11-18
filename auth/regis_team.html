@@ -31,9 +31,10 @@
             </div>
         </div><br>
         <form id="regisForm">
-        <div class="container card">
+        <div class="container">
+        <div class="card">
+            <div class="card-header"><h4>Institution Information</h4></div>
             <div class="row card-body">
-                <h3>Institution Information</h3>
                 <div class="col-md-6">
                     <label for="schoolName" class="form-label">Faculty/School Name</label>
                     <small class="text-muted">e.g. Faculty of Medicine</small>
@@ -59,20 +60,35 @@
                     <input type="text" class="form-control" id="uniNamePron" placeholder="">
                 </div>
             </div>
+        </div>
         </div><br>
-        <div class="container card">
+        <div class="container">
+            <div class="card">
+            <div class="card-header"><h4>Competitor #1 Information</h4></div>
             <div class="row card-body">
-                <h3>Competitors Information</h3>
-                <div class="col-md-6">
-                    <label for="schoolName" class="form-label">Faculty/School Name</label>
-                    <small class="text-muted">e.g. Faculty of Medicine</small>
-                    <input type="text" class="form-control" id="schoolName">
+                <div class="col-md-4">
+                    <label for="cp1FirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="cp1FirstName">
                 </div>
-                <div class="col-md-6">
-                    <label for="uniName" class="form-label">University/Institute Name</label>
-                    <small class="text-muted">e.g. Chiang Mai University</small>
-                    <input type="text" class="form-control" id="uniName">
+                <div class="col-md-4">
+                    <label for="cp1MiddleName" class="form-label">Middle Name</label>
+                    <input type="text" class="form-control" id="cp1MiddleName">
                 </div>
+                <div class="col-md-4">
+                    <label for="cp1LastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="cp1LastName">
+                </div>
+                <div class="col-md-4">
+                    <label for="cp1PreferName" class="form-label">Preferred Name</label>
+                    <small class="text-muted">If none, this box can be left unfilled</small>
+                    <input type="text" class="form-control" id="cp1PreferName">
+                </div>
+                <div class="col-md-8">
+                    <label for="cp1Email" class="form-label">E-Mail</label>
+                    <small class="text-muted">Make sure it is correct or else your registration will not be completed</small>
+                    <input type="email" class="form-control" id="cp1PreferName">
+                </div>
+            </div>
             </div>
         </div>
         <br>
