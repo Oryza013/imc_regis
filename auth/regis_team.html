@@ -350,13 +350,6 @@
       </form>
       <br>
 
-
-
-
-
-
-
-
       <form id="regisForm">
         <div class="container">
             <div class="card">
@@ -432,15 +425,40 @@
 
             <div class="col-md-5">
                 <label for="Preferred Contact Method" class="form-label">Preferred Contact Method</label>
-                <select id="cp1PreferCont" class="form-select">
-                  <option disabled selected value> -- select an option -- </option>
-                      <option value="Email">Email</option>
-                      <option value="Line">Line</option>
-                      <option value="Telegram">Telegram</option>
-                      <option value="Facebook">Facebook</option>
-                      <option value="Other">Other</option>
+                <select id="cp1PreferCont" class="form-select" onChange="changetextbox();">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="Email">Email</option>
+                    <option value="Line">Line</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Other">Other</option>
                 </select>
-        </div>
+                <input type="text" class="form-control" id="other1" placeholder="Others please specify." disabled="disabled">
+                <script language="javascript">
+                    function changetextbox() {
+                        if (document.getElementById("cp1PreferCont").value === "Other") {
+                            document.getElementById("other1").disabled = ''
+                        } else {
+                            document.getElementById("other1").disabled = 'true';
+                        }
+                        if (document.getElementById("cp2PreferCont").value === "Other") {
+                            document.getElementById("other2").disabled = ''
+                        } else {
+                            document.getElementById("other2").disabled = 'true';
+                        }
+                        if (document.getElementById("cp3PreferCont").value === "Other") {
+                            document.getElementById("other3").disabled = ''
+                        } else {
+                            document.getElementById("other3").disabled = 'true';
+                        }
+                        if (document.getElementById("cpPreferCont").value === "Other") {
+                            document.getElementById("other").disabled = ''
+                        } else {
+                            document.getElementById("other").disabled = 'true';
+                        }
+                    }
+                </script>
+            </div>
         <div class="col-md-7">
             <label for="cp1PreferContId" class="form-label">Name or ID of Preferred Contact Method</label>
             <input type="text" class="form-control" id="cp1PreferContId">
@@ -552,15 +570,16 @@
 
             <div class="col-md-5">
                 <label for="Preferred Contact Method" class="form-label">Preferred Contact Method</label>
-                <select id="cp2PreferCont" class="form-select">
-                  <option disabled selected value> -- select an option -- </option>
-                      <option value="Email">Email</option>
-                      <option value="Line">Line</option>
-                      <option value="Telegram">Telegram</option>
-                      <option value="Facebook">Facebook</option>
-                      <option value="Other">Other</option>
+                <select id="cp2PreferCont" class="form-select" onChange="changetextbox();">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="Email">Email</option>
+                    <option value="Line">Line</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Other">Other</option>
                 </select>
-        </div>
+                <input type="text" class="form-control" id="other2" placeholder="Others please specify." disabled="disabled">
+            </div>
         <div class="col-md-7">
             <label for="cp2PreferContId" class="form-label">Name or ID of Preferred Contact Method</label>
             <input type="text" class="form-control" id="cp2PreferContId">
@@ -671,15 +690,16 @@
 
             <div class="col-md-5">
                 <label for="Preferred Contact Method" class="form-label">Preferred Contact Method</label>
-                <select id="cp3PreferCont" class="form-select">
-                  <option disabled selected value> -- select an option -- </option>
-                      <option value="Email">Email</option>
-                      <option value="Line">Line</option>
-                      <option value="Telegram">Telegram</option>
-                      <option value="Facebook">Facebook</option>
-                      <option value="Other">Other</option>
+                <select id="cp3PreferCont" class="form-select" onChange="changetextbox();">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="Email">Email</option>
+                    <option value="Line">Line</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Other">Other</option>
                 </select>
-        </div>
+                <input type="text" class="form-control" id="other3" placeholder="Others please specify." disabled="disabled">
+            </div>
         <div class="col-md-7">
             <label for="cp3PreferContId" class="form-label">Name or ID of Preferred Contact Method</label>
             <input type="text" class="form-control" id="cp3PreferContId">
@@ -770,14 +790,15 @@
 
                 <div class="col-md-4">
                     <label for="Preferred Contact Method" class="form-label">Preferred Contact Method</label>
-                    <select id="cpPreferCont" class="form-select">
-                      <option disabled selected value> -- select an option -- </option>
-                          <option value="Email">Email</option>
-                          <option value="Line">Line</option>
-                          <option value="Telegram">Telegram</option>
-                          <option value="Facebook">Facebook</option>
-                          <option value="Other">Other</option>
+                    <select id="cpPreferCont" class="form-select" onChange="changetextbox();">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="Email">Email</option>
+                        <option value="Line">Line</option>
+                        <option value="Telegram">Telegram</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Other">Other</option>
                     </select>
+                    <input type="text" class="form-control" id="other" placeholder="Others please specify." disabled="disabled">
                 </div>
 
                 <div class="col-md-6">
