@@ -735,9 +735,29 @@
         <form id="regisForm">
         <div class="container">
             <div class="card">
-            <div class="card-header"><h4>Advisor Information</h4>
-              <small class="text-muted">(optional)</small>
-            </div>
+                <div class="card-header">
+                    <h4>Advisor Information</h4>
+                    <label class="switch" style="display: flex; float: right ">
+                        <input type="checkbox" class="switch" name="advisorCheck" onclick="showMe('advisorID')">
+                        <span class="slider round"></span>
+                    </label>
+                    <script>
+                        function showMe(box) {
+                            var chboxs = document.getElementsByName("advisorCheck");
+                            var vis = "none";
+                            for (var i = 0; i < chboxs.length; i++) {
+                                if (chboxs[i].checked) {
+                                    vis = "block";
+                                    break;
+                                }
+                            }
+                            document.getElementById(box).style.display = vis;
+                        }
+                    </script>
+
+                    <small class="text-muted">(optional)</small>
+                </div>
+            <div id="advisorID" style="display: none;">
             <div class="row card-body">
               <div class="col-md-2">
                   <label for="Title" class="form-label">Title</label>
@@ -806,6 +826,7 @@
                     <br/>
                     <input type="text" class="form-control" id="adPreferContId">
                 </div>
+            </div>
             </div>
             </div>
         </div>
