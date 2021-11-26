@@ -1,0 +1,143 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/bootstrap.css">
+      <link rel="stylesheet" href="css/scroll_ani.css">
+      <script src="js/bootstrap.bundle.js"></script>
+      <link rel="stylesheet" href="css/features.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap" rel="stylesheet">
+      <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" integrity="sha512-UwbBNAFoECXUPeDhlKR3zzWU3j8ddKIQQsDOsKhXQGdiB5i3IHEXr9kXx82+gaHigbNKbTDp3VY/G6gZqva6ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script> 
+        $(function(){
+          $("#footerContent").load("footer.html");
+          $("#navContent").load("head.html");
+          $("#inputCountry").load("countrylist.html");
+        });
+      </script>
+    </head>
+    <div id="navContent"></div>
+    
+	<body>
+        <div class="container-fluid bg-imc-animate">
+            <div class="container animate-text">
+                <div class="row">
+                    <div class="col-md-3 align-items-center text-center d-flex justify-content-center" style="min-height:200px;"><img src="../image/logo-white.png" style="height:130; width: auto;"></div>
+                    <div class="col-md-9 text-center align-items-center text-white d-flex justify-content-center"><h1>Team Dashboard</h1><br></div>
+                </div>
+            </div>
+		</div>
+		
+		<br>
+      <div class="container text-center">
+            <h2>Team name is not set yet!</h2>
+            <small class="text-muted">We don't know where you are from!</small>
+      </div> <br>
+      <div class="container">
+        <div class="row">
+          <div class="col col-md-4">
+            <div class="card">
+              <div class="card-header">Email Verified</div>
+              <div class="card-body"><span id = "emailVerifyStatus" class="text-danger">Not Verified</span></div>
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="card">
+              <div class="card-header">Application Status</div>
+              <div class="card-body"><span id = "applicationStatus" class="text-danger">Application form not filled</span><a href="team_setup.html"><br><i class='bx bx-pencil bx-tada' ></i> Fill Application Form</a></div>
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="card">
+              <div class="card-header">Payment Status</div>
+              <div class="card-body"><span id = "paymentStatus" class="text-danger">Await application comfirmation</span></div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div class="container">
+          <div class="table-responsive">
+          <table class="table table-striped">
+                <thead>
+              <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Status</th>
+                  </tr>
+            </thead>
+            <tbody>
+              <tr>
+                    <th scope="row"></th>
+                    <td><strong>Application Status</strong></td>
+                    <td></td>
+                  </tr>
+              <tr>
+                    <th scope="row">1</th>
+                    <td>School and team information <span class="text-danger">(Required)</span></td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">2</th>
+                    <td>School Logo <span class="text-danger">(Required)</span></td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">3</th>
+                    <td>Group Picture/Logo</td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">4</th>
+                    <td>Competitor 1 Student Card <span class="text-danger">(Required)</span></td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">5</th>
+                    <td>Competitor 2 Student Card <span class="text-danger">(Required)</span></td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">6</th>
+                    <td>Competitor 3 Student Card <span class="text-danger">(Required)</span></td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">7</th>
+                    <td>Letter of approval <span class="text-danger">(Required)</span></td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row">8</th>
+                    <td>Vouncher from 6th CMU-IMC</td>
+                    <td>Not submitted</td>
+                  </tr>
+              <tr>
+                    <th scope="row"></th>
+                    <td>*After each status is submitted, please wait within 48 hours. Your submitted status will be either 
+                 		'<span class="text-success">Approved</span>', or '<span class="text-danger">Rejected</span>' <br>
+                  		*If your all four submitted statuses that are required are '<span class="text-success">Approved</span>', your  registration is completed. </td>
+                    <td></td>
+                  </tr>
+              <tr>
+                    <th scope="row"></th>
+                    <td><strong>Payment peroid (Nov1 - Dec24, 2021)</strong></td>
+                    <td></td>
+                  </tr>
+              <tr>
+                    <th scope="row">9</th>
+                    <td>Payment</td>
+                    <td><span class="text-danger">Unpaid</span></td>
+                  </tr>
+            </tbody>
+          </table>
+          </div>
+      </div>
+</body>
+	<div id="footerContent"></div>
+
+</html>

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/scroll_ani.css">
     <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="css/features.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" integrity="sha512-UwbBNAFoECXUPeDhlKR3zzWU3j8ddKIQQsDOsKhXQGdiB5i3IHEXr9kXx82+gaHigbNKbTDp3VY/G6gZqva6ZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-
         $(function(){
           $("#footerContent").load("footer.html");
           $("#navContent").load("head.html");
@@ -31,47 +31,98 @@
             </div>
         </div>
     </div><br>
-    <form id="teamSetupForm">
+    <form id="teamSetupForm" method = "POST" action="php/teamConfig.php" enctype="multipart/form-data">
         <div class="container">
             <div class="card">
                 <div class="card-header"><h4>Team Data</h4></div>
                 <div class="row card-body">
                     <div class="col-md-6">
                         <label for="teamSchoolName" class="form-label">Faculty/School Name</label>
-                        <input type="text" class="form-control" id="teamSchoolName">
+                        <small class="text-muted">e.g. Faculty of Medicine</small>
+                        <input type="text" class="form-control" id="schoolName" name = "schoolName">
                     </div>
                     <div class="col-md-6">
                         <label for="teamUniName" class="form-label">University/Institute Name</label>
-                        <input type="text" class="form-control" id="teamUniName">
+                        <small class="text-muted">e.g. Chiang Mai University</small>
+                        <input type="text" class="form-control" id="uniName" name = "uniName">
                     </div>
                     <div class="col-md-6">
                         <label for="teamUniAbbr" class="form-label">School/Faculty Abbreviation</label>
-                        <input type="text" class="form-control" id="teamUniAbbr">
+                        <small class="text-muted">e.g. MedCMU</small>
+                        <input type="text" class="form-control" id="uniAbbr" name = "uniAbbr">
                     </div>
                     <div class="col-md-6">
-                        <label for="teamPreferName" class="form-label">Preferred Team Name</label>
-                        <input type="text" class="form-control" id="teamPreferName">
+                        <label for="teamPreferName" class="form-label">Team Name</label>
+                        <small class="text-muted">e.g. We Will Win</small>
+                        <small class="text-danger" id="teamTaken"></small>
+                        <input type="text" class="form-control" id="preferName" name = "preferName">
                     </div>
-                    <div class="col-md-6">
-                        <label for="teamPreferAbbr" class="form-label">Preferred Team Abbreviation</label>
-                        <input type="text" class="form-control" id="teamPreferAbbr">
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label for="teamLogo" class="form-label">Upload Team Logo:</label>
-                        <form id="teamLogo" enctype="multipart/form-data" method="post" action="#">
-                            <div class="form-control">
-                                <input id="teamLogo" name="filename" type="file" />
-                                <input type="submit" value="submit file" id="submit"/>
-                            </div>
-                        </form>
+                        <div class="form-control">
+                                <input type = "file" id="teamLogo" name="teamLogo"/>
+                        </div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-warning btn-lg" id="proceedBtn">Next</button>
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <button class="btn btn-warning btn-lg" type="submit" value="submit" id="loginBtn">Next</button>
-        </div>
+        <div class="modal fade" id="modalBeforeCont" tabindex="-1" role="dialog" aria-labelledby="modalBeforeCont" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Before you Proceed!</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="alert alert-info">Please make sure these data is correct</div>
+                  <p><strong>School/Faculty Name: </strong><p id="modSchoolName"></p></p>
+                  <p><strong>University/Institution Name: </strong><p id="modUniName"></p></p>
+                  <p><strong>School/University Abbreviation: </strong><p id="modUniAbbr"></p></p>
+                  <p><strong>Team Name: </strong><p id="modTeamName"></p></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
+                  <button type="button" class="btn btn-primary" action="submit" value="submit" id="submitBtn">Continue</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </form>
 </body>
 <div id="footerContent"></div>
+<script>
+        $("#proceedBtn").on("click",function(){
+            event.preventDefault();
+            $("#modalBeforeCont").modal('show');
+            document.getElementById("modSchoolName").innerHTML = $("#schoolName").val();
+            document.getElementById("modUniName").innerHTML = $("#uniName").val();
+            document.getElementById("modUniAbbr").innerHTML = $("#uniAbbr").val();
+            document.getElementById("modTeamName").innerHTML = $("#preferName").val();
+        })
+        $("#closeBtn").on("click",function(){
+            $("#modalBeforeCont").modal('hide');
+        })
+        $("#submitBtn").on("click",function(){
+            document.getElementById("teamSetupForm").submit();
+        })
+
+        $("#preferName").keyup(function(){
+        $.ajax({
+            url: "/auth/php/teamName.php",
+            type: "POST",
+            data: {teamName: $("#preferName").val()},
+            success: function(response){
+                if("teamNameTaken" == response){
+                    document.getElementById("teamTaken").innerHTML = "This name has been taken, Choose another one!"
+                }if("teamNameOK" == response){
+                    document.getElementById("teamTaken").innerHTML = "<span class = 'text-success'>This name is available!</span>"
+                }
+
+            }
+
+        })
+})
+</script>
 </html>
