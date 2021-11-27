@@ -8,17 +8,29 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" aria-current="page" href="login.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" aria-current="page" href="regis_team.html">Registration</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="payment.html">Payment submission</a>
-                    </li>
                   </ul>
                   <div>
-                    <a class="btn btn-outline-warning d-block" href="/auth"><i class='bx bx-log-in'></i> Login/Register</a>
+                    <a class="btn btn-outline-warning d-block" href="login.php" id="mainButton"><i class='bx bx-log-in'></i> </a>
+                    <script > 
+                      $.ajax({
+                        url:"php/loginStat.php",
+                        success: function(stat){
+                          console.log(stat)
+                          if (stat==0){
+                            document.getElementById("mainButton").innerHTML="<i class='bx bxs-dashboard'></i> Dashboard"
+                          }
+                          if(stat==1){
+                            document.getElementById("mainButton").innerHTML="<i class='bx bx-log-out-circle'></i> Log out"
+                            document.getElementById("mainButton").setAttribute("href","php/log out.php")
+                          }
+                        }
+                        })
+                    </script>
                   </div>
               </div>
         </div>

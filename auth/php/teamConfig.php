@@ -12,11 +12,11 @@ $uniName = mysqli_real_escape_string($conn,$_POST["uniName"]);
 $uniAbbr = mysqli_real_escape_string($conn,$_POST["uniAbbr"]);
 $teamName = mysqli_real_escape_string($conn,$_POST["preferName"]);
 
-
 $path = "../../upload/";
 $valid_extension = array('jpeg','jpg','png','pdf');
 $fileName = $_FILES["teamLogo"]["name"];
 $fileTemp = $_FILES["teamLogo"]["tmp_name"];
+
 
 if(!empty($_FILES['teamLogo'])){
 $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
@@ -32,6 +32,7 @@ if(in_array($extension, $valid_extension)){
         VALUES ('".$teamUid."','".$schoolName."','".$uniName."','".$uniAbbr."','".$teamName."','".$final_image."')");
     if($insert){
         $createTeam = $conn->query("INSERT competdata (`teamUid`) VALUES ('".$teamUid."')");
+        $setTeamToUser = $conn->query("UPDATE users SET `teamUid` = '".$teamUid."' WHERE `id`  = '".$_SESSION["id"]."'");
         header("location: /auth/regis_team.html");
     }else{
         header("location: /auth/team_setup.html?err=1");
@@ -39,16 +40,16 @@ if(in_array($extension, $valid_extension)){
     }
 }else{
     $_SESSION["teamUid"] = $teamUid;
-    $insert = $conn->query("INSERT teamdata (`teamUid`,`schoolName`,`uniName`,`uniAbbr`,`teamName`) VALUES ('".$teamUid."','".$schoolName."','".$uniName."','".$uniAbbr."','".$teamName."',)");
-    if($insert){
-        $createTeam = $conn->query("INSERT competdata (`teamUid`) VALUES ('".$teamUid."')");
-        header("location: /auth/regis_team.html");
-    }else{
-        header("location: /auth/team_setup.html?err=1");
-    }
+$insert = $conn->query("INSERT teamdata (`teamUid`,`schoolName`,`uniName`,`uniAbbr`,`teamName`) VALUES ('".$teamUid."','".$schoolName."','".$uniName."','".$uniAbbr."','".$teamName."',)");
+if($insert){
+    $createTeam = $conn->query("INSERT competdata (`teamUid`) VALUES ('".$teamUid."')");
+    $setTeamToUser = $conn->query("UPDATE users SET `teamUid` = '".$teamUid."' WHERE `id`  = '".$_SESSION["id"]."'");
+    header("location: /auth/regis_team.html");
+}else{
+    header("location: /auth/team_setup.html?err=1");
+}
 }
 }else{
     echo "EXT INVALID";
 }
-
 ?>

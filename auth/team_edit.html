@@ -17,7 +17,6 @@
         $(function(){
           $("#footerContent").load("footer.html");
           $("#navContent").load("head.html");
-          $("#inputCountry").load("countrylist.html");
         });
     </script>
 </head>
@@ -31,7 +30,7 @@
             </div>
         </div>
     </div><br>
-    <form id="teamSetupForm" method = "POST" action="/auth/php/teamConfig.php" enctype="multipart/form-data">
+    <form id="teamSetupForm" method = "POST" action="/auth/php/teamConfigUpdate.php" enctype="multipart/form-data">
         <div class="container">
             <div class="card">
                 <div class="card-header"><h4>Team Data</h4></div>
@@ -94,6 +93,16 @@
 </body>
 <div id="footerContent"></div>
 <script>
+    $.ajax({
+            url: "/auth/php/checkIfSubmit.php",
+            success: function(response){
+                console.log(response)
+               var statRes = JSON.parse(response)
+                if(statRes['submitConfirm']==1){
+                    window.location.replace("dashboard.php")
+                }
+            }
+        })
         $("#proceedBtn").on("click",function(){
             event.preventDefault();
             $("#modalBeforeCont").modal('show');
@@ -120,10 +129,18 @@
                 }if("teamNameOK" == response){
                     document.getElementById("teamTaken").innerHTML = "<span class = 'text-success'>This name is available!</span>"
                 }
-
             }
-
         })
-})
+        })
+        $.ajax({
+            url: "/auth/php/teamConfigEdit.php",
+            success: function(jsonRes){
+                var res = JSON.parse(jsonRes)
+               document.getElementById("schoolName").setAttribute("value", res['schoolName'])
+                document.getElementById("uniName").setAttribute("value", res['uniName'])
+                document.getElementById("uniAbbr").setAttribute("value", res['uniAbbr'])
+                document.getElementById("preferName").setAttribute("value",res['teamName'])
+            }
+        })
 </script>
 </html>

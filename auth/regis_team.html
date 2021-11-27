@@ -27,7 +27,7 @@
 </head>
 <div id="navContent"></div>
 
-<body>
+<body id="body">
     <html>
 
     <head>
@@ -52,7 +52,6 @@
             $(function () {
                 $("#footerContent").load("footer.html");
                 $("#navContent").load("head.html");
-                $("#inputCountry").load("countrylist.html");
             });
         </script>
     </head>
@@ -73,7 +72,7 @@
                 </div>
             </div>
         </div><br>
-        <form id="schoolData" enctype="multipart/form-data">
+        <form id="schoolData" enctype="multipart/form-data" method="POST" action="php/teamRegisController.php">
             <div class="container">
                 <h3 class="text-center">Hello! <span id="teamWelcome"></span></h3>
                 <div class="card">
@@ -545,7 +544,7 @@
                         <div class="col-md-5">
                             <label for="Preferred Contact Method" class="form-label">Preferred Contact
                                 Method</label>
-                            <select id="cp1PreferCont" class="form-select" name="cp1PreferCont" onChange="changetextbox();">
+                            <select id="cp1PreferCont" class="form-select" name="cp1PreferCont" onClick="changetextbox();">
                                 <option disabled selected value> --
                                     select an option -- </option>
                                 <option value="Email">Email</option>
@@ -591,14 +590,14 @@
                         <div class="col-md-12">
                             <label for="cp1CardPhoto" name="cp1CardPhoto" class="form-label">Student Card Photo</label>
                             <div class="form-control">
-                                <input id="cp1CardPhoto" name="filename" type="file" />
+                                <input id="cp1CardPhoto" name="cp1CardPhoto" type="file" />
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <label for="cp1ProfilePhoto" name = "cp1ProfilePhoto" class="form-label">Profile Photo</label>
                             <div class="form-control">
-                                <input id="cp1ProfilePhoto" name="filename" type="file" />
+                                <input id="cp1ProfilePhoto" name="cp1ProfilePhoto" type="file" />
                             </div>
 
                         </div>
@@ -692,7 +691,7 @@
                         <div class="col-md-5">
                             <label for="Preferred Contact Method" class="form-label">Preferred Contact
                                 Method</label>
-                            <select id="cp2PreferCont" name="cp2PreferCont" class="form-select" onChange="changetextbox();">
+                            <select id="cp2PreferCont" name="cp2PreferCont" class="form-select" onClick="changetextbox();">
                                 <option disabled selected value> --
                                     select an option -- </option>
                                 <option value="Email">Email</option>
@@ -814,7 +813,7 @@
                         <div class="col-md-5">
                             <label for="Preferred Contact Method" class="form-label">Preferred Contact
                                 Method</label>
-                            <select id="cp3PreferCont" class="form-select" onChange="changetextbox();" name="cp3PreferCont">
+                            <select id="cp3PreferCont" class="form-select" onClick="changetextbox();" name="cp3PreferCont">
                                 <option disabled selected value> --
                                     select an option -- </option>
                                 <option value="Email">Email</option>
@@ -933,7 +932,7 @@
                             <div class="col-md-4">
                                 <label for="Preferred Contact Method" class="form-label">Preferred Contact
                                     Method</label>
-                                <select id="adPreferCont" name = "adPreferCont" class="form-select" onChange="changetextbox();">
+                                <select id="adPreferCont" name = "adPreferCont" class="form-select" onClick="changetextbox();">
                                     <option disabled selected value> --
                                         select an option -- </option>
                                     <option value="Email">Email</option>
@@ -977,7 +976,7 @@
             <div class="container">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Vouncher</h4>
+                        <h4>Voucher</h4>
                         <label class="switch" style="display: flex;
                                     float: right">
                             <input type="checkbox" class="switch" name="switchVouncher" onclick="showMe('vouncher')">
@@ -1001,39 +1000,130 @@
                     <div id="vouncher" style="display: none;">
                         <div class="row card-body">
                             <div class="col-md-12">
-                                <label for="vouncher" class="form-label">Upload
-                                    vouncher</label>
+                                <label for="voucherPics" class="form-label">Upload
+                                    voucher</label>
                                     <div class="form-control">
-                                        <input id="vouncherPics" name="vouncherPics" type="file" />
+                                        <input id="voucherPics" name="voucherPics" type="file" />
                                     </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <p class="text-center">Step 2/3</p>
+                    <div class="d-flex justify-content-evenly">
+                        <a class="btn btn-secondary align-content-center" href="team_edit.html"><i class='bx bx-chevrons-left'></i> Previous Step</a>
+                        <button class="btn btn-warning justify-content-end" type="submit" value="submit" id="loginBtn">Next Step <i class='bx bx-chevrons-right'></i></button>
+                    </div>
             <br>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-warning btn-lg" type="submit" value="submit" id="loginBtn">Register</button>
-            </div>
         </form>
 
     </body>
     <div id="footerContent"></div>
     <script>
+            $.ajax({
+            url: "/auth/php/checkIfSubmit.php",
+            success: function(response){
+                console.log(response)
+               var statRes = JSON.parse(response)
+                if(statRes['submitConfirm']==1){
+                    window.location.replace("dashboard.php")
+                }
+            }
+        })
         $.ajax({
             url: "/auth/php/getTeamDataOnRegis.php",
             success: function (response) {
                 var res = JSON.parse(response)
+                $('#inputCountry option:contains(' + res['inputCountry'] +')').each(function(){
+                        $(this).attr('selected', true);});
                 document.getElementById("schoolName").setAttribute('value', res['schoolName'])
                 document.getElementById("uniName").setAttribute('value', res['uniName'])
                 document.getElementById("uniAbbr").setAttribute('value', res['uniAbbr'])
+                document.getElementById("uniAddr").setAttribute('value',res['uniAddr'])
                 document.getElementById("schoolName").setAttribute('disabled', '')
                 document.getElementById("uniName").setAttribute('disabled', '')
                 document.getElementById("uniAbbr").setAttribute('disabled', '')
                 document.getElementById("teamWelcome").innerHTML = res['teamName']
-            }
+                }
         })
-        // SCHOOL DATA AUTO CHANGE
+        // LOAD AND FILL
+            $.ajax({
+                url: "/auth/php/teamRegisFetchData.php",
+                success: function(result){
+                    var result = JSON.parse(result)
+                document.getElementById("cp1FirstName").setAttribute('value', result[0]['cp1FirstName']);
+                document.getElementById("cp1MiddleName").setAttribute('value', result[0]['cp1MiddleName']);
+                document.getElementById("cp1LastName").setAttribute('value', result[0]['cp1LastName']);
+                document.getElementById("cp1PreferName").setAttribute('value', result[0]['cp1PreferName']);
+                document.getElementById("cp1Email").setAttribute('value', result[0]['cp1Email']);
+                document.getElementById("cp1Dob").setAttribute('value', result[0]['cp1Dob']);
+                document.getElementById("cp1Gpa").setAttribute('value', result[0]['cp1Gpa']);
+                document.getElementById("cp1CurrentYr").setAttribute('value', result[0]['cp1CurrentYr']);
+                document.getElementById("cp1Program").setAttribute('value', result[0]['cp1Program']);
+                document.getElementById("cp1PreferContId").setAttribute('value', result[0]['cp1PreferContId']);
+                document.getElementById("cp1PhoneNum").setAttribute('value', result[0]['cp1PhoneNumber']);
+                document.getElementById("other1").setAttribute('value',result[0]['cp1PreferCont'])
+                $('#cp1PreferCont option:contains(' + result[0]['cp1PreferCont'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#cp1Gender option:contains(' + result[0]['cp1Gender'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#cp1Title option:contains(' + result[0]['cp1Title'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                        document.getElementById("cp2FirstName").setAttribute('value', result[0]['cp2FirstName']);
+                document.getElementById("cp2MiddleName").setAttribute('value', result[0]['cp2MiddleName']);
+                document.getElementById("cp2LastName").setAttribute('value', result[0]['cp2LastName']);
+                document.getElementById("cp2PreferName").setAttribute('value', result[0]['cp2PreferName']);
+                document.getElementById("cp2Email").setAttribute('value', result[0]['cp2Email']);
+                document.getElementById("cp2Dob").setAttribute('value', result[0]['cp2Dob']);
+                document.getElementById("cp2Gpa").setAttribute('value', result[0]['cp2Gpa']);
+                document.getElementById("cp2CurrentYr").setAttribute('value', result[0]['cp2CurrentYr']);
+                document.getElementById("cp2Program").setAttribute('value', result[0]['cp2Program']);
+                document.getElementById("cp2PreferContId").setAttribute('value', result[0]['cp2PreferContId']);
+                document.getElementById("cp2PhoneNum").setAttribute('value', result[0]['cp2PhoneNumber']);
+                document.getElementById("other2").setAttribute('value',result[0]['cp2PreferCont'])
+                $('#cp2PreferCont option:contains(' + result[0]['cp2PreferCont'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#cp2Gender option:contains(' + result[0]['cp2Gender'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#cp2Title option:contains(' + result[0]['cp2Title'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                document.getElementById("cp3FirstName").setAttribute('value', result[0]['cp3FirstName']);
+                document.getElementById("cp3MiddleName").setAttribute('value', result[0]['cp3MiddleName']);
+                document.getElementById("cp3LastName").setAttribute('value', result[0]['cp3LastName']);
+                document.getElementById("cp3PreferName").setAttribute('value', result[0]['cp3PreferName']);
+                document.getElementById("cp3Email").setAttribute('value', result[0]['cp3Email']);
+                document.getElementById("cp3Dob").setAttribute('value', result[0]['cp3Dob']);
+                document.getElementById("cp3Gpa").setAttribute('value', result[0]['cp3Gpa']);
+                document.getElementById("cp3CurrentYr").setAttribute('value', result[0]['cp3CurrentYr']);
+                document.getElementById("cp3Program").setAttribute('value', result[0]['cp3Program']);
+                document.getElementById("cp3PreferContId").setAttribute('value', result[0]['cp3PreferContId']);
+                document.getElementById("cp3PhoneNum").setAttribute('value', result[0]['cp3PhoneNumber']);
+                document.getElementById("other3").setAttribute('value',result[0]['cp3PreferCont'])
+                $('#cp3PreferCont option:contains(' + result[0]['cp3PreferCont'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#cp3Gender option:contains(' + result[0]['cp3Gender'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#cp3Title option:contains(' + result[0]['cp3Title'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                document.getElementById("adFirstName").setAttribute('value', result[0]['adFirstName']);
+		        document.getElementById("adRank").setAttribute('value',result[0]['adRank']);
+                document.getElementById("adMiddleName").setAttribute('value', result[0]['adMiddleName']);
+                document.getElementById("adLastName").setAttribute('value', result[0]['adLastName']);
+                document.getElementById("adPreferName").setAttribute('value', result[0]['adPreferName']);
+                document.getElementById("adEmail").setAttribute('value', result[0]['adEmail']);
+                document.getElementById("adPreferContId").setAttribute('value', result[0]['adPreferContId']);
+                document.getElementById("other1").setAttribute('value',result[0]['adPreferCont'])
+                $('#adPreferCont option:contains(' + result[0]['adPreferCont'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#adGender option:contains(' + result[0]['adGender'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                $('#adTitle option:contains(' + result[0]['adTitle'] +')').each(function(){
+                        $(this).attr('selected', true);});
+                }
+                
+            })
+        // AUTO CHANGE
         $("#schoolData").change(function () {
             console.log("change found!")
             formValues = $(this).serialize();
@@ -1044,15 +1134,21 @@
                 processData: false,
                 contentType: false,
                 success: function (phpReturn) {
-                    console.log(phpReturn)
                 }
             })
         }
         )
 
-        //DATA FILL
-        document.getElementById("")
-
+        $.ajax({
+            url: "/auth/php/checkIfSubmit.php",
+            success: function(response){
+                console.log(response)
+                /*var statRes = JSON.parse(response)
+                if(statRes['submitConfirm']==1){
+                    window.location.replace("dashboard.html")
+                }*/
+            }
+        })
     </script>
 
     </html>

@@ -45,7 +45,21 @@
                         </li>
                       </ul>
                       <div>
-                        <a class="btn btn-outline-warning d-block" href="/auth"><i class='bx bx-log-in'></i> Login/Register</a>
+                        <a class="btn btn-outline-warning d-block" href="/auth/dashboard.php" id="mainButton"><i class='bx bx-log-in'></i> </a>
+                        <script > 
+                          $.ajax({
+                            url:"/auth/php/loginStat.php",
+                            success: function(stat){
+                              console.log(stat)
+                              if (stat=="0"){
+                                document.getElementById("mainButton").innerHTML="<i class='bx bx-log-in-circle' ></i> Login/Sign Up"
+                              }
+                              if(stat=="1"){
+                                document.getElementById("mainButton").innerHTML="<i class='bx bxs-dashboard'></i> Dashboard"
+                              }
+                            }
+                            })
+                        </script>
                       </div>
                   </div>
             </div>

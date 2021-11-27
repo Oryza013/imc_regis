@@ -71,7 +71,7 @@ if(isset($_POST["cp2Gender"])){
 }
 if(isset($_POST["cp2PreferCont"])){
     $cp2PreferCont = mysqli_real_escape_string($conn, $_POST["cp2PreferCont"]);
-    if($_POST["cp2PreferCOnt"]="Other"){
+    if($_POST["cp2PreferCont"]="Other"){
         if(isset($_POST["other2"])){
             $cp2PreferCont = mysqli_real_escape_string($conn, $_POST["other2"]);
         }
@@ -104,7 +104,7 @@ if(isset($_POST["cp3Gender"])){
 }
 if(isset($_POST["cp3PreferCont"])){
     $cp3PreferCont = mysqli_real_escape_string($conn, $_POST["cp3PreferCont"]);
-    if($_POST["cp3PreferCOnt"]="Other"){
+    if($_POST["cp3PreferCont"]="Other"){
         if(isset($_POST["other3"])){
             $cp3PreferCont = mysqli_real_escape_string($conn, $_POST["other3"]);
         }
@@ -135,8 +135,8 @@ if(isset($_POST["adGender"])){
 if(isset($_POST["adPreferCont"])){
     $adPreferCont = mysqli_real_escape_string($conn, $_POST["adPreferCont"]);
     if($_POST["adPreferCOnt"]="Other"){
-        if(isset($_POST["other3"])){
-            $adPreferCont = mysqli_real_escape_string($conn, $_POST["other3"]);
+        if(isset($_POST["other"])){
+            $adPreferCont = mysqli_real_escape_string($conn, $_POST["other"]);
         }
     }
 }else{
@@ -149,7 +149,6 @@ $updateTeamDataOnly = $conn->query("UPDATE `teamdata` SET
     `inputCountry` = '".$country."'
     WHERE `teamUid` = '".$teamUid."'");
     if($updateTeamDataOnly = true){
-        echo "DataOnly TRUE";
     }
 
 $updateCompetDataOnly = $conn->query("UPDATE `competdata` SET
@@ -204,10 +203,10 @@ $updateCompetDataOnly = $conn->query("UPDATE `competdata` SET
     `adPreferCont` = '".$adPreferCont."',
     `adPreferContId` = '".$adPreferContId."',
     `adGender` = '".$adGender."',
-    `adRank` = '".$adRank."'
+    `adRank` = '".$adRank."',
+    `paymentStat` = ''
     WHERE `teamUid` = '".$teamUid."'");
     if($updateCompetDataOnly = true){
-        echo "updated";
     }
 
 
@@ -222,9 +221,8 @@ if(!empty($_FILES["facLogo"])){
     }
     if(in_array($facLogoExt, $valid_extension)){
         if(move_uploaded_file($facLogoTemp,$facLogoPath)){
-            $updateFacLogo = $conn->query("UPDATE `competdata` SET (`facLogo`) = ('".$facLogoFinal."') WHERE `teamUid` = '".$teamUid."'");
+            $updateFacLogo = $conn->query("UPDATE `competdata` SET `facLogo` = '".$facLogoFinal."' WHERE `teamUid` = '".$teamUid."'");
             if($updateFacLogo = true){
-                echo "teamLogo TRUE";
             }else{
                 echo mysql_error($updateFacLogo);
                 echo mysql_error($updateTeamData);
@@ -234,25 +232,176 @@ if(!empty($_FILES["facLogo"])){
 }
 
 if(!empty($_FILES["cp1CardPhoto"])){
-    echo "cp1CardPhotoFound!";
-}
-
-#COMPET 1 ID
-/*
-if($_FILES["cp1CardPhoto"]){
-    $facLogoUploadName = $_FILES["facLogo"]["name"];
-    $facLogoTemp = $_FILES["facLogo"]["tmp_name"];
-    $facLogoExt = strtolower(pathinfo($facLogoUploadName, PATHINFO_EXTENSION));
-    $facLogoFinal = "facLogo_".$teamUid.".".$facLogoExt;
-    $facLogoPath = $path.$facLogoFinal;
-    if(file_exists($facLogoPath)){
-        unlink ($facLogoPath);
+    $cp1CardPhotoUploadName = $_FILES["cp1CardPhoto"]["name"];
+    $cp1CardPhotoTemp = $_FILES["cp1CardPhoto"]["tmp_name"];
+    $cp1CardPhotoExt = strtolower(pathinfo($cp1CardPhotoUploadName, PATHINFO_EXTENSION));
+    $cp1CardPhotoFinal = "cp1CardPhoto_".$teamUid.".".$cp1CardPhotoExt;
+    $cp1CardPhotoPath = $path.$cp1CardPhotoFinal;
+    if(file_exists($cp1CardPhotoPath)){
+        unlink ($cp1CardPhotoPath);
     }
-    if(in_array($facLogoExt, $valid_extension)){
-        if(move_uploaded_file($facLogoTemp,$facLogoPath)){
-            $updateFacLogo = $conn->query("UPDATE `competdata` SET `facLogo` = '".$facLogoFinal."' WHERE `teamUid` = '".$teamUid."'");
+    if(in_array($cp1CardPhotoExt, $valid_extension)){
+        if(move_uploaded_file($cp1CardPhotoTemp,$cp1CardPhotoPath)){
+            $updatecp1CardPhoto = $conn->query("UPDATE `competdata` SET `cp1CardPhoto` = '".$cp1CardPhotoFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatecp1CardPhoto = true){
+                $updatecp1CardStat = $conn->query("UPDATE `competdata` SET `cp1PicsStat` = 'Saved' WHERE `teamUid` = '".$teamUid."'");
+            }else{
+                echo mysql_error($updatecp1CardPhoto);
+                echo mysql_error($updateTeamData);
+            }
         }
     }
 }
-*/
+
+if(!empty($_FILES["cp2CardPhoto"])){
+    $cp2CardPhotoUploadName = $_FILES["cp2CardPhoto"]["name"];
+    $cp2CardPhotoTemp = $_FILES["cp2CardPhoto"]["tmp_name"];
+    $cp2CardPhotoExt = strtolower(pathinfo($cp2CardPhotoUploadName, PATHINFO_EXTENSION));
+    $cp2CardPhotoFinal = "cp2CardPhoto_".$teamUid.".".$cp2CardPhotoExt;
+    $cp2CardPhotoPath = $path.$cp2CardPhotoFinal;
+    if(file_exists($cp2CardPhotoPath)){
+        unlink ($cp2CardPhotoPath);
+    }
+    if(in_array($cp2CardPhotoExt, $valid_extension)){
+        if(move_uploaded_file($cp2CardPhotoTemp,$cp2CardPhotoPath)){
+            $updatecp2CardPhoto = $conn->query("UPDATE `competdata` SET `cp2CardPhoto` = '".$cp2CardPhotoFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatecp2CardPhoto = true){
+                $updatecp2CardStat = $conn->query("UPDATE `competdata` SET `cp2PicsStat` = 'Saved' WHERE `teamUid` = '".$teamUid."'");
+            }else{
+                echo mysql_error($updatecp2CardPhoto);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+if(!empty($_FILES["cp3CardPhoto"])){
+    $cp3CardPhotoUploadName = $_FILES["cp3CardPhoto"]["name"];
+    $cp3CardPhotoTemp = $_FILES["cp3CardPhoto"]["tmp_name"];
+    $cp3CardPhotoExt = strtolower(pathinfo($cp3CardPhotoUploadName, PATHINFO_EXTENSION));
+    $cp3CardPhotoFinal = "cp3CardPhoto_".$teamUid.".".$cp3CardPhotoExt;
+    $cp3CardPhotoPath = $path.$cp3CardPhotoFinal;
+    if(file_exists($cp3CardPhotoPath)){
+        unlink ($cp3CardPhotoPath);
+    }
+    if(in_array($cp3CardPhotoExt, $valid_extension)){
+        if(move_uploaded_file($cp3CardPhotoTemp,$cp3CardPhotoPath)){
+            $updatecp3CardPhoto = $conn->query("UPDATE `competdata` SET `cp3CardPhoto` = '".$cp3CardPhotoFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatecp3CardPhoto = true){
+                $updatecp3CardStat = $conn->query("UPDATE `competdata` SET `cp3PicsStat` = 'Saved' WHERE `teamUid` = '".$teamUid."'");
+            }else{
+                echo mysql_error($updatecp3CardPhoto);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+if(!empty($_FILES["letAppr"])){
+    $letApprUploadName = $_FILES["letAppr"]["name"];
+    $letApprTemp = $_FILES["letAppr"]["tmp_name"];
+    $letApprExt = strtolower(pathinfo($letApprUploadName, PATHINFO_EXTENSION));
+    $letApprFinal = "letAppr_".$teamUid.".".$letApprExt;
+    $letApprPath = $path.$letApprFinal;
+    if(file_exists($letApprPath)){
+        unlink ($letApprPath);
+    }
+    if(in_array($letApprExt, $valid_extension)){
+        if(move_uploaded_file($letApprTemp,$letApprPath)){
+            $updateletAppr = $conn->query("UPDATE `competdata` SET `letAppr` = '".$letApprFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updateletAppr = true){
+                $updateletApprCardStat = $conn->query("UPDATE `competdata` SET `letApprStat` = 'Saved' WHERE `teamUid` = '".$teamUid."'");
+            }else{
+                echo mysql_error($updateletAppr);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+if(!empty($_FILES["voucherPics"])){
+    $voucherPicsUploadName = $_FILES["voucherPics"]["name"];
+    $voucherPicsTemp = $_FILES["voucherPics"]["tmp_name"];
+    $voucherPicsExt = strtolower(pathinfo($voucherPicsUploadName, PATHINFO_EXTENSION));
+    $voucherPicsFinal = "voucherPics_".$teamUid.".".$voucherPicsExt;
+    $voucherPicsPath = $path.$voucherPicsFinal;
+    if(file_exists($voucherPicsPath)){
+        unlink ($voucherPicsPath);
+    }
+    if(in_array($voucherPicsExt, $valid_extension)){
+        if(move_uploaded_file($voucherPicsTemp,$voucherPicsPath)){
+            $updatevoucherPics = $conn->query("UPDATE `competdata` SET `voucherPics` = '".$voucherPicsFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatevoucherPics = true){
+            }else{
+                echo mysql_error($updatevoucherPics);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+if(!empty($_FILES["cp1ProfilePhoto"])){
+    $cp1ProfilePhotoUploadName = $_FILES["cp1ProfilePhoto"]["name"];
+    $cp1ProfilePhotoTemp = $_FILES["cp1ProfilePhoto"]["tmp_name"];
+    $cp1ProfilePhotoExt = strtolower(pathinfo($cp1ProfilePhotoUploadName, PATHINFO_EXTENSION));
+    $cp1ProfilePhotoFinal = "cp1ProfilePhoto_".$teamUid.".".$cp1ProfilePhotoExt;
+    $cp1ProfilePhotoPath = $path.$cp1ProfilePhotoFinal;
+    if(file_exists($cp1ProfilePhotoPath)){
+        unlink ($cp1ProfilePhotoPath);
+    }
+    if(in_array($cp1ProfilePhotoExt, $valid_extension)){
+        if(move_uploaded_file($cp1ProfilePhotoTemp,$cp1ProfilePhotoPath)){
+            $updatecp1ProfilePhoto = $conn->query("UPDATE `competdata` SET `cp1ProfilePhoto` = '".$cp1ProfilePhotoFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatecp1ProfilePhoto = true){
+            }else{
+                echo mysql_error($updatecp1ProfilePhoto);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+if(!empty($_FILES["cp2ProfilePhoto"])){
+    $cp2ProfilePhotoUploadName = $_FILES["cp2ProfilePhoto"]["name"];
+    $cp2ProfilePhotoTemp = $_FILES["cp2ProfilePhoto"]["tmp_name"];
+    $cp2ProfilePhotoExt = strtolower(pathinfo($cp2ProfilePhotoUploadName, PATHINFO_EXTENSION));
+    $cp2ProfilePhotoFinal = "cp2ProfilePhoto_".$teamUid.".".$cp2ProfilePhotoExt;
+    $cp2ProfilePhotoPath = $path.$cp2ProfilePhotoFinal;
+    if(file_exists($cp2ProfilePhotoPath)){
+        unlink ($cp2ProfilePhotoPath);
+    }
+    if(in_array($cp2ProfilePhotoExt, $valid_extension)){
+        if(move_uploaded_file($cp2ProfilePhotoTemp,$cp2ProfilePhotoPath)){
+            $updatecp2ProfilePhoto = $conn->query("UPDATE `competdata` SET `cp2ProfilePhoto` = '".$cp2ProfilePhotoFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatecp2ProfilePhoto = true){
+            }else{
+                echo mysql_error($updatecp2ProfilePhoto);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+if(!empty($_FILES["cp3ProfilePhoto"])){
+    $cp3ProfilePhotoUploadName = $_FILES["cp3ProfilePhoto"]["name"];
+    $cp3ProfilePhotoTemp = $_FILES["cp3ProfilePhoto"]["tmp_name"];
+    $cp3ProfilePhotoExt = strtolower(pathinfo($cp3ProfilePhotoUploadName, PATHINFO_EXTENSION));
+    $cp3ProfilePhotoFinal = "cp3ProfilePhoto_".$teamUid.".".$cp3ProfilePhotoExt;
+    $cp3ProfilePhotoPath = $path.$cp3ProfilePhotoFinal;
+    if(file_exists($cp3ProfilePhotoPath)){
+        unlink ($cp3ProfilePhotoPath);
+    }
+    if(in_array($cp3ProfilePhotoExt, $valid_extension)){
+        if(move_uploaded_file($cp3ProfilePhotoTemp,$cp3ProfilePhotoPath)){
+            $updatecp3ProfilePhoto = $conn->query("UPDATE `competdata` SET `cp3ProfilePhoto` = '".$cp3ProfilePhotoFinal."' WHERE `teamUid` = '".$teamUid."'");
+            if($updatecp3ProfilePhoto = true){
+            }else{
+                echo mysql_error($updatecp3ProfilePhoto);
+                echo mysql_error($updateTeamData);
+            }
+        }
+    }
+}
+
+header("location: /auth/confirmData.html")
 ?>

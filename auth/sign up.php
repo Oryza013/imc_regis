@@ -1,3 +1,6 @@
+<?php require_once 'authController.php'; ?>
+
+
 <html>
     <head>
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -17,56 +20,46 @@
         <div class="container-fluid bg-imc-animate d-flex justify-content-center flex-column h-100">
             <img class="" style=" max-width: 20%; margin-left:auto; margin-right:auto" src="../image/logo.png"><br>
             <div class="container" id="loginErrorDiv"></div>
-            <div class="container-md">
-                <div class="card">
+            <div class="row justify-content-around">
+                <div class="card col-6">
                     <div class="card-body">
-                        <h2 class="card-title text-center"><strong>Sign in</strong></h2>
-                        <form id="loginForm">
+                        <h2 class="card-title text-center"><strong>Creating new account</strong></h2>
+
+                        <?php if(count($errors)>0): ?>
+                            <div class="alert alert-danger">
+                                <?php foreach($errors as $error): ?>
+                                    <li><?php echo $error; ?></li>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <form id="loginForm" method="POST" action="sign up.php">
                             <div class="row">
                             <div class="col-12">
                                 <label for="loginEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="loginEmail">
+                                <input type="email" class="form-control" id="loginEmail" name="user_email" value="<?php echo $user_email; ?>">
+                                <?php //echo $errors['user_email']; ?>
                             </div>
                             <div class="col-12">
                                 <label for="loginPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="loginPassword">
+                                <input type="password" class="form-control" id="loginPassword" name="user_password">
+                                <?php //echo $errors['user_password']; ?>
+                            </div>
+                            <div class="col-12">
+                                <label for="loginPassword" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="loginPassword" name="user_conf_password">
+                                <?php //echo $error_user_password; ?>
                             </div>
                             </div><br>
                             <div class="d-flex justify-content-center">
-                            <button class="btn btn-warning btn-lg" type="submit" value="submit" id="loginBtn">Login</button>
+                            <button class="btn btn-warning btn-lg" type="submit" value="submit" id="loginBtn" name="reg_btn">Sign up</button>
                             </div>
                             <br>
                         </form>
-                        <p>Don't have an account yet? <a href="">Register Here! <i class='bx bx-chevrons-right bx-tada' ></i></a></p>
+                        <p>Already has an account? <a href="login.php">Sign in Here</a></p>
                     </div>
                 </div>
             </div>
         </div>
-<!--อันนี้ลองเรียก JAVASCRIPT เล่น ๆ ไม่ต้องใส่ใจ -->
-<script>
-    function userLogin(){
-        var loginEmail = $("#loginEmail").val();
-        var loginPassword = $("#loginPassword").val();
-        console.log(loginEmail+" Password: "+loginPassword)
-    }
-    function alert(type,message){
-        const loginErrorDiv = document.getElementById("loginErrorDiv")
-        loginErrorDiv.innerHTML = "<div class='alert alert-"+type+" alert-dismissible' role='alert'>"+message
-    }
-    $("#loginForm").submit(function(){
-        event.preventDefault();
-        var loginEmailLength = $("#loginEmail").val().length;
-        var loginPasswordLength = $("#loginPassword").val().length;
-        if(0===loginPasswordLength && 0===loginEmailLength){
-            alert("danger","Email and Password must be provided")
-        }else if(0===loginPasswordLength){
-            alert("danger","Password must be provided")
-        }else if(0===loginEmailLength){
-            alert("danger","Email must be provided")
-        }else{
-            userLogin();
-        }
-    })
-</script>
-    </body>
+        </body>
 </html>

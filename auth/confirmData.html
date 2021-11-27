@@ -1,0 +1,324 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+            crossorigin="anonymous" />
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/scroll_ani.css">
+        <script src="js/bootstrap.bundle.js"></script>
+        <link rel="stylesheet" href="css/features.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css"
+            integrity="sha512-UwbBNAFoECXUPeDhlKR3zzWU3j8ddKIQQsDOsKhXQGdiB5i3IHEXr9kXx82+gaHigbNKbTDp3VY/G6gZqva6ZQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(function () {
+                $("#footerContent").load("footer.html");
+                $("#navContent").load("head.html");
+            });
+        </script>
+    </head>
+    <div id="navContent"></div>
+
+    <body>
+        <div class="container-fluid bg-imc-animate">
+            <div class="container animate-text">
+                <div class="row">
+                    <div class="col-md-3 align-items-center text-center
+                                d-flex justify-content-center" style="min-height:200px;"><img
+                            src="../image/logo-white.png" style="height:130; width: auto;">
+                    </div>
+                    <div class="col-md-9 text-center align-items-center
+                                text-white d-flex justify-content-center">
+                        <h1>Registration</h1><br>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+            <div class="container">
+                <h3 class="text-center">Application Form</h3><p class="text-center">2022 CMU-IMC: Basic to Clinical Biochemistry and Molecular Biology</p>
+                <div class="alert alert-danger text-center">Please make sure these data are correct. Once you submitted you application form, you would<Strong> not be able to change these data!</Strong></div>
+                <div class="alert alert-info text-center">Now your application is now saved on our database. You can always come and change these data <Strong>as long as you don't submit them.</Strong></div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Institution Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img id = "facLogo" src="" style="height:auto; width: 200;">
+                            </div>
+                            <div class="col-md-9">
+                                <p>Faculty/School Name: <span id="schoolName"></span></p>
+                                <p>University/Institute Name: <span id="uniName"></span></p>
+                                <p>University/Institute Abbreviation: <span id="uniAbbr"></span></p>
+                                <p>Country: <span id="inputCountry"></span></p>
+                                <p>Address: <span id="uniAddr"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Team Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img id = "teamLogo" src="" style="height:auto; width: 200;">
+                            </div>
+                            <div class="col-md-9">
+                                <p>Team Name: <span id="teamName"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Competitor #1</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img id = "cp1CardPhoto" src="" style="height:auto; width: 200;">
+                                <img id = "cp1ProfilePhoto" src="" style="height:auto; width: 200;">
+                            </div>
+                            <div class="col-md-9">
+                                <p>Title: <span id="cp1Title"></span></p>
+                                <p>First name: <span id="cp1FirstName"></span></p>
+                                <p>Middle name: <span id="cp1MiddleName"></span></p>
+                                <p>Last name: <span id="cp1LastName"></span></p>
+                                <p>Preferred name: <span id="cp1PreferName"></span></p>
+                                <p>E-Mail: <span id="cp1Email"></span></p>
+                                <p>Gender: <span id="cp1Gender"></span></p>
+                                <p>Date of Birth: <span id="cp1Dob"></span></p>
+                                <p>GPAX: <span id="cp1Gpa"></span></p>
+                                <p>Current year: <span id="cp1CurrentYr"></span></p>
+                                <p>Phone number: <span id="cp1PhoneNum"></span></p>
+                                <p>Prefered contact method: <span id="cp1PreferCont"></span></p>
+                                <p>Name of ID of prefered contact method: <span id="cp1PreferContId"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Competitor #2</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img id = "cp2CardPhoto" src="" style="height:auto; width: 200;">
+                                <img id = "cp2ProfilePhoto" src="" style="height:auto; width: 200;">
+                            </div>
+                            <div class="col-md-9">
+                                <p>Title: <span id="cp2Title"></span></p>
+                                <p>First name: <span id="cp2FirstName"></span></p>
+                                <p>Middle name: <span id="cp2MiddleName"></span></p>
+                                <p>Last name: <span id="cp2LastName"></span></p>
+                                <p>Preferred name: <span id="cp2PreferName"></span></p>
+                                <p>E-Mail: <span id="cp2Email"></span></p>
+                                <p>Gender: <span id="cp2Gender"></span></p>
+                                <p>Date of Birth: <span id="cp2Dob"></span></p>
+                                <p>GPAX: <span id="cp2Gpa"></span></p>
+                                <p>Current year: <span id="cp2CurrentYr"></span></p>
+                                <p>Phone number: <span id="cp2PhoneNum"></span></p>
+                                <p>Prefered contact method: <span id="cp2PreferCont"></span></p>
+                                <p>Name of ID of prefered contact method: <span id="cp2PreferContId"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Competitor #3</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img id = "cp3CardPhoto" src="" style="height:auto; width: 200;">
+                                <img id = "cp3ProfilePhoto" src="" style="height:auto; width: 200;">
+                            </div>
+                            <div class="col-md-9">
+                                <p>Title: <span id="cp3Title"></span></p>
+                                <p>First name: <span id="cp3FirstName"></span></p>
+                                <p>Middle name: <span id="cp3MiddleName"></span></p>
+                                <p>Last name: <span id="cp3LastName"></span></p>
+                                <p>Preferred name: <span id="cp3PreferName"></span></p>
+                                <p>E-Mail: <span id="cp3Email"></span></p>
+                                <p>Gender: <span id="cp3Gender"></span></p>
+                                <p>Date of Birth: <span id="cp3Dob"></span></p>
+                                <p>GPAX: <span id="cp3Gpa"></span></p>
+                                <p>Current year: <span id="cp3CurrentYr"></span></p>
+                                <p>Phone number: <span id="cp3PhoneNum"></span></p>
+                                <p>Prefered contact method: <span id="cp3PreferCont"></span></p>
+                                <p>Name of ID of prefered contact method: <span id="cp3PreferContId"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Advisor</h4>
+                    </div>
+                    <div class="card-body">
+                            <div class="col-md-12">
+                                <p>Title: <span id="adTitle"></span></p>
+				                <p>Academic rank: <span id="adRank"></span></p>
+                                <p>First name: <span id="adFirstName"></span></p>
+                                <p>Middle name: <span id="adMiddleName"></span></p>
+                                <p>Last name: <span id="adLastName"></span></p>
+                                <p>Preferred name: <span id="adPreferName"></span></p>
+                                <p>E-Mail: <span id="adEmail"></span></p>
+                                <p>Gender: <span id="adGender"></span></p>
+                                <p>Prefered contact method: <span id="adPreferCont"></span></p>
+                                <p>Name of ID of prefered contact method: <span id="adPreferContId"></span></p>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="card justify-content-center">
+                        <div class="card-header">
+                            <h4>Letter of Approval</h4>
+                        </div>
+                        <div class="card-body">
+                            <img id="letAppr" src="" style="height:200px; width: auto;">
+                        </div>
+                    </div><br>
+                    <div class="card justify-content-center">
+                        <div class="card-header">
+                            <h4>Voucher</h4>
+                        </div>
+                        <div class="card-body">
+                            <img id="voucherPics" src="" style="height:200px; width: auto;">
+                        </div>
+                    </div><br>
+                    <p class="text-center">Step 3/3</p>
+                    <div class="d-flex justify-content-evenly">
+                        <a class="btn btn-secondary align-content-center" href="regis_team.html"><i class='bx bx-chevrons-left'></i> Previous Step</a>
+                        <button class="btn btn-warning" id="btnSubmit"><i class='bx bx-check'></i> Submit</button>
+                    </div><br>
+                </div>
+            </div>
+            <div class="modal fade" id="modalBeforeCont" tabindex="-1" role="dialog" aria-labelledby="modalBeforeCont" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Before you Proceed!</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div class="alert alert-danger">Please make sure these data is correct. Once you submit, You will not able to edit these data!</div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
+                      <button type="button" class="btn btn-primary" action="submit" value="submit" id="submitBtn">Continue</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+    </body>
+    <div id="footerContent"></div>
+    <script>
+        $("#btnSubmit").on("click",function(){
+            event.preventDefault();
+            $("#modalBeforeCont").modal('show');
+        })
+        $("#closeBtn").on("click",function(){
+            $("#modalBeforeCont").modal('hide');
+        })
+        $("#submitBtn").on("click",function(){
+            $.ajax({
+                url: "/auth/php/teamConfirmController.php",
+                method: "POST",
+                value: {"submitConfirm": true},
+                success: function(x){
+                    window.location.replace("/auth/dashboard.php")
+                }
+            })
+        })
+        $.ajax({
+            url: "/auth/php/getTeamDataOnRegis.php",
+            success: function (response) {
+                var res = JSON.parse(response)
+                document.getElementById("schoolName").innerHTML = res['schoolName'];
+                document.getElementById("uniName").innerHTML = res['uniName'];
+                document.getElementById("uniAbbr").innerHTML = res['uniAbbr'];
+                document.getElementById("inputCountry").innerHTML = res['inputCountry'];
+                document.getElementById("uniAddr").innerHTML = res['uniAddr'];
+                document.getElementById("teamLogo").setAttribute("src","../upload/"+res['facLogo']);
+                document.getElementById("teamName").innerHTML = res['teamName']
+            }
+        })
+        $.ajax({
+            url: "/auth/php/teamRegisFetchData.php",
+            success: function(response){
+                var response = JSON.parse(response)
+                document.getElementById("facLogo").setAttribute("src","../upload/"+response[0]['facLogo'])
+                document.getElementById("cp1CardPhoto").setAttribute("src","../upload/"+response[0]['cp1CardPhoto'])
+                document.getElementById("cp2CardPhoto").setAttribute("src","../upload/"+response[0]['cp2CardPhoto'])
+                document.getElementById("cp3CardPhoto").setAttribute("src","../upload/"+response[0]['cp3CardPhoto'])
+                document.getElementById("cp1ProfilePhoto").setAttribute("src","../upload/"+response[0]['cp1ProfilePhoto'])
+                document.getElementById("cp2ProfilePhoto").setAttribute("src","../upload/"+response[0]['cp2ProfilePhoto'])
+                document.getElementById("cp3ProfilePhoto").setAttribute("src","../upload/"+response[0]['cp3ProfilePhoto'])
+                document.getElementById("letAppr").setAttribute("src","../upload/"+response[0]['letAppr'])
+                document.getElementById("voucherPics").setAttribute("src","../upload/"+response[0]['voucherPics'])
+                document.getElementById("cp1Title").innerHTML = response[0]['cp1Title']
+                document.getElementById("cp1FirstName").innerHTML = response[0]['cp1FirstName']
+                document.getElementById("cp1MiddleName").innerHTML = response[0]['cp1MiddleName']
+                document.getElementById("cp1LastName").innerHTML = response[0]['cp1LastName']
+                document.getElementById("cp1PreferName").innerHTML = response[0]['cp1PreferName']
+                document.getElementById("cp1Email").innerHTML = response[0]['cp1Email']               
+                document.getElementById("cp1Gender").innerHTML = response[0]['cp1Gender']
+                document.getElementById("cp1Dob").innerHTML = response[0]['cp1Dob']
+                document.getElementById("cp1Gpa").innerHTML = response[0]['cp1Gpa']
+                document.getElementById("cp1CurrentYr").innerHTML = response[0]['cp1CurrentYr']
+                document.getElementById("cp1PhoneNum").innerHTML = response[0]['cp1PhoneNumber']
+                document.getElementById("cp1PreferCont").innerHTML = response[0]['cp1PreferCont']
+                document.getElementById("cp1PreferContId").innerHTML = response[0]['cp1PreferContId']
+                document.getElementById("cp2Title").innerHTML = response[0]['cp2Title']
+                document.getElementById("cp2FirstName").innerHTML = response[0]['cp2FirstName']
+                document.getElementById("cp2MiddleName").innerHTML = response[0]['cp2MiddleName']
+                document.getElementById("cp2LastName").innerHTML = response[0]['cp2LastName']
+                document.getElementById("cp2PreferName").innerHTML = response[0]['cp2PreferName']
+                document.getElementById("cp2Email").innerHTML = response[0]['cp2Email']               
+                document.getElementById("cp2Gender").innerHTML = response[0]['cp2Gender']
+                document.getElementById("cp2Dob").innerHTML = response[0]['cp2Dob']
+                document.getElementById("cp2Gpa").innerHTML = response[0]['cp2Gpa']
+                document.getElementById("cp2CurrentYr").innerHTML = response[0]['cp2CurrentYr']
+                document.getElementById("cp2PhoneNum").innerHTML = response[0]['cp2PhoneNumber']
+                document.getElementById("cp2PreferCont").innerHTML = response[0]['cp2PreferCont']
+                document.getElementById("cp2PreferContId").innerHTML = response[0]['cp2PreferContId']
+                document.getElementById("cp3Title").innerHTML = response[0]['cp3Title']
+                document.getElementById("cp3FirstName").innerHTML = response[0]['cp3FirstName']
+                document.getElementById("cp3MiddleName").innerHTML = response[0]['cp3MiddleName']
+                document.getElementById("cp3LastName").innerHTML = response[0]['cp3LastName']
+                document.getElementById("cp3PreferName").innerHTML = response[0]['cp3PreferName']
+                document.getElementById("cp3Email").innerHTML = response[0]['cp3Email']               
+                document.getElementById("cp3Gender").innerHTML = response[0]['cp3Gender']
+                document.getElementById("cp3Dob").innerHTML = response[0]['cp3Dob']
+                document.getElementById("cp3Gpa").innerHTML = response[0]['cp3Gpa']
+                document.getElementById("cp3CurrentYr").innerHTML = response[0]['cp3CurrentYr']
+                document.getElementById("cp3PhoneNum").innerHTML = response[0]['cp3PhoneNumber']
+                document.getElementById("cp3PreferCont").innerHTML = response[0]['cp3PreferCont']
+                document.getElementById("cp3PreferContId").innerHTML = response[0]['cp3PreferContId']
+                document.getElementById("adTitle").innerHTML = response[0]['adTitle']
+		        document.getElementById("adRank").innerHTML = response[0]['adRank']
+                document.getElementById("adFirstName").innerHTML = response[0]['adFirstName']
+                document.getElementById("adMiddleName").innerHTML = response[0]['adMiddleName']
+                document.getElementById("adLastName").innerHTML = response[0]['adLastName']
+                document.getElementById("adPreferName").innerHTML = response[0]['adPreferName']
+                document.getElementById("adEmail").innerHTML = response[0]['adEmail']               
+                document.getElementById("adPreferCont").innerHTML = response[0]['adPreferCont']
+                document.getElementById("adPreferContId").innerHTML = response[0]['adPreferContId']
+                document.getElementById("adGender").innerHTML = response[0]['adGender']
+            }
+        })
+    </script>
+</html>
